@@ -4,6 +4,7 @@ I needed to be able to parse query strings and turn them into object in my javas
 I turned to [Rack](https://github.com/chneukirchen/rack/blob/master/lib/rack/utils.rb), since I knew it had solved the problem before.
 
 I ported the following methods responsible for this into javascript:
+
 * unescape
 * parse_query
 * parse_nested_query
@@ -13,7 +14,7 @@ The javascript version is not quite as elegant as the ruby version. But it gets 
 
 Example Usage
 --------------
-```
+```javascript
 <script type="text/javascript" src="/js/objektivity.js"></script>
 <script>
 	//from something like jquery $('form inputs').serialize()
