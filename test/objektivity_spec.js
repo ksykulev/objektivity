@@ -122,8 +122,13 @@ describe("objektivity_spec", function(){
         it("x[y][z]=1&x[y][z]=2", function(){
           expect(objektivity.parseNestedQuery("x[y][z][]=1&x[y][z][]=2")).toEqual( {"x": {"y": {"z": ["1", "2"]}}} );
         });
+        it('x[y][z][+]=11', function(){
+          //handling the touchy subject where the array object is defined with a space.
+          //example: x[ ] instead of x[]
+          expect(objektivity.parseNestedQuery("x[y][z][+]=11")).toEqual( {"x" : {"y": {"z": ["11"]}}} );
+        });
       });
-//35
+//36
       describe("arrays of hashes", function(){
         it("x[y][][z]=1", function(){
           expect(objektivity.parseNestedQuery("x[y][][z]=1")).toEqual( {"x": {"y": [ {"z": "1"} ]}} );
@@ -149,7 +154,7 @@ describe("objektivity_spec", function(){
             toEqual( {"x": {"y": [ {"z": "1", "w": "a"}, {"z": "2", "w": "3"}  ]}} );
         });
       });
-//42
+//43
     });
     describe("errors", function(){
       it("x[y]=1&x[y]z=2", function(){
@@ -162,6 +167,6 @@ describe("objektivity_spec", function(){
         expect( function(){return objektivity.parseNestedQuery("x[y]=1&x[y][][w]=2");} ).toThrow("expected Array (got String) for param `y'");
       });
     });
-//45
+//46
   });
 });

@@ -56,7 +56,8 @@
 
     var matcherOne    = new RegExp("^[\\[\\]]*([^\\[\\]]+)\\]*(.*)"),
         matcherTwo    = new RegExp("^\\[\\]\\[([^\\[\\]]+)\\]$"),
-        matcherThree  = new RegExp("^\\[\\](.+)$");
+        matcherThree  = new RegExp("^\\[\\](.+)$"),
+        arrayMatcher  = new RegExp("^\\[\\s*\\]$");
     var normalize_params = function(params, name, v){
       var kv = matcherOne.exec(name),
           k = (kv && kv[1]) || '',
@@ -69,7 +70,7 @@
 
       if(after == ""){
         params[k] = v;
-      } else if(after == "[]"){
+      } else if(arrayMatcher.test(after)){
         params[k] || (params[k] = []);
 
         if(!(objectClassName(params[k]) === "Array")){
