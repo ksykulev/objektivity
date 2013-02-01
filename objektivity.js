@@ -10,7 +10,7 @@
 
     var unescape = function(s){
       if(!s){ return s; }
-      return decodeURIComponent(s).replace(/\+/g, ' ');
+      return decodeURIComponent(s.replace(/\+/g, '%20'));
     }
 
     var parseQuery = function(queryString, d){

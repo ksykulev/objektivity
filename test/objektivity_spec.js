@@ -9,6 +9,9 @@ describe("objektivity_spec", function(){
     it("should unespace %20", function(){
       expect(objektivity.unescape('a%20space')).toEqual('a space');
     });
+    it("should unescape %2B", function(){
+      expect(objektivity.unescape('a%2Bspace')).toEqual('a+space');
+    });
     it("should unespace a URI escaped string", function(){
       expect(objektivity.unescape('q1%212%22%27w%245%267%2Fz8%29%3F%5C')).toEqual("q1!2\"'w$5&7/z8)?\\");
     });
